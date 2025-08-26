@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "5a633317-a93d-4b2b-89a3-db554cc174ad",
+		"name": "DDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46208410",
+		"_collection_link": "https://francoantu.postman.co/workspace/Franco-Antu's-Workspace~f12eb21d-c202-45cd-8d35-c935731cffa3/collection/46208410-5a633317-a93d-4b2b-89a3-db554cc174ad?action=share&source=collection_link&creator=46208410"
+	},
+	"item": [
+		{
+			"name": "/api/colecciones",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "/api/hecho",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreColeccion\": \"1\",\r\n    \"titulo\": \"unhecho1\",\r\n    \"etiquetas\": [],\r\n    \"categoria\": 1,\r\n    \"ubicacion\": \"caba\",\r\n    \"fecha\":\"2024-06-07\",\r\n    \"origen\": \"postman\",\r\n    \"estado\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/hecho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"hecho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/colecciones/{nombre}",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/colecciones/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"colecciones",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/colecciones",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"3\",\r\n    \"descripcion\": \"Muy muy buena coleccion\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/colecciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"colecciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/colecciones/{nombre}/hechos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/colecciones/1/hechos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"colecciones",
+						"1",
+						"hechos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/hecho/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreColeccion\": \"1\",\r\n    \"titulo\": \"unhecho1\",\r\n    \"etiquetas\": [],\r\n    \"categoria\": 1,\r\n    \"ubicacion\": \"caba\",\r\n    \"fecha\":\"2024-06-07\",\r\n    \"origen\": \"postman\",\r\n    \"estado\": 1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/hecho/b25a4aed-67a4-4d56-97d6-0ee09ad7d338",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"hecho",
+						"b25a4aed-67a4-4d56-97d6-0ee09ad7d338"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/hecho/{id}",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"nuevo titulo actualizado\",\r\n    \"estado\": \"NO_CENSURADO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/hecho/b25a4aed-67a4-4d56-97d6-0ee09ad7d338",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"hecho",
+						"b25a4aed-67a4-4d56-97d6-0ee09ad7d338"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
