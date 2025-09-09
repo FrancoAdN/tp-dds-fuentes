@@ -1,8 +1,8 @@
 package ar.edu.utn.dds.k3003.controller;
 
 import ar.edu.utn.dds.k3003.app.IFachadaFuente;
+import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
-import ar.edu.utn.dds.k3003.facades.dtos.ColeccionDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package ar.edu.utn.dds.k3003.app;
 
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
-import ar.edu.utn.dds.k3003.facades.dtos.ColeccionDTO;
+import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
 import ar.edu.utn.dds.k3003.facades.dtos.PdIDTO;
 import ar.edu.utn.dds.k3003.facades.FachadaProcesadorPdI;
 import java.util.List;

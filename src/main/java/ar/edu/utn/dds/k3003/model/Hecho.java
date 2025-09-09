@@ -9,8 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ public class Hecho {
             List<String> etiquetas,
             CategoriaHechoEnum categoria,
             String ubicacion,
-            LocalDateTime fecha,
+            LocalDate fecha,
             String origen,
             EstadoHechoEnum estado) {
         this.nombreColeccion = nombreColeccion;
@@ -54,7 +53,7 @@ public class Hecho {
     @Enumerated(EnumType.STRING)
     private CategoriaHechoEnum categoria;
     private String ubicacion;
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     private String origen;
     @Enumerated(EnumType.STRING)
     private EstadoHechoEnum estado;
@@ -100,11 +99,11 @@ public class Hecho {
         this.ubicacion = ubicacion;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

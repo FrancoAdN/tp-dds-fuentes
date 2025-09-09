@@ -1,6 +1,6 @@
 package ar.edu.utn.dds.k3003.dtos;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import ar.edu.utn.dds.k3003.facades.dtos.CategoriaHechoEnum;
@@ -11,7 +11,7 @@ public record HechoDTO(
     List<String> etiquetas,
     CategoriaHechoEnum categoria,
     String ubicacion,
-    LocalDateTime fecha,
+    LocalDate fecha,
     String origen,
     EstadoHechoEnum estado,
     String id) {

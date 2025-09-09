@@ -1,8 +1,8 @@
 package ar.edu.utn.dds.k3003.app;
 
 import ar.edu.utn.dds.k3003.facades.FachadaProcesadorPdI;
-import ar.edu.utn.dds.k3003.facades.dtos.ColeccionDTO;
 import ar.edu.utn.dds.k3003.facades.dtos.PdIDTO;
+import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
 import ar.edu.utn.dds.k3003.model.Coleccion;
 import ar.edu.utn.dds.k3003.dtos.EstadoHechoEnum;
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
@@ -44,25 +44,29 @@ public class Fachada implements IFachadaFuente {
 		Coleccion coleccion = new Coleccion(coleccionDTO.nombre(), coleccionDTO.descripcion());
 		coleccion.setId(Coleccion.generarId());
 		this.coleccionRepository.save(coleccion);
-		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion());
+		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
 	}
 
 	@Override
 	public ColeccionDTO buscarColeccionXId(String id) {
+		System.out.println("Buscando coleccion con ID: " + id);
 		Optional<Coleccion> coleccionOptional = this.coleccionRepository.findById(id).stream().findFirst();
-		if (coleccionOptional.isEmpty()) {
+		System.out.println("ColeccionOptional: " + coleccionOptional);
+    if (coleccionOptional.isEmpty()) {
 			throw new NoSuchElementException(id + " no existe");
 		}
 		Coleccion coleccion = coleccionOptional.get();
-		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion());
+		System.out.println("Coleccion: " + coleccion);
+		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
 	}
 
 	@Override
 	public HechoDTO agregar(HechoDTO hechoDTO) {
 		ColeccionDTO coleccionDTO = this.buscarColeccionXId(hechoDTO.nombre_coleccion());
+    System.out.println("ColeccionDTO: " + coleccionDTO);
 		Hecho hecho =
 				new Hecho(
-						coleccionDTO.nombre(),
+						hechoDTO.nombre_coleccion(),
 						hechoDTO.titulo(),
 						hechoDTO.etiquetas(),
 						hechoDTO.categoria(),
@@ -70,8 +74,11 @@ public class Fachada implements IFachadaFuente {
 						hechoDTO.fecha(),
 						hechoDTO.origen(),
                         hechoDTO.estado());
+        System.out.println("Hecho: " + hecho);
 		hecho.setId(Hecho.generarId());
 		System.err.println("Hecho ID generado: " + hecho.getId());
+
+        System.out.println("Hecho ID generado: " + hecho.getId());
 
 		this.hechoRepository.save(hecho);
 
@@ -185,7 +192,7 @@ public HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) {
 	@Override
 	public List<ColeccionDTO> colecciones() {
 		return this.coleccionRepository.findAll().stream()
-			.map(coleccion -> new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion()))
+			.map(coleccion -> new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId()))
 			.toList();
 	}
 }
