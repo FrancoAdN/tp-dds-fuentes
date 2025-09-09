@@ -38,6 +38,7 @@ public class Fachada implements IFachadaFuente {
 			throw new IllegalArgumentException(coleccionDTO.nombre() + " ya existe");
 		}
 		Coleccion coleccion = new Coleccion(coleccionDTO.nombre(), coleccionDTO.descripcion());
+		coleccion.setId(Coleccion.generarId());
 		this.coleccionRepository.save(coleccion);
 		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion());
 	}

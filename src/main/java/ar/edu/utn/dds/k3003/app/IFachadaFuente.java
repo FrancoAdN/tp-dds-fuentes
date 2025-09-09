@@ -25,6 +25,6 @@ public interface IFachadaFuente {
 
   List<ColeccionDTO> colecciones();
 
-  // List<HechoDTO> hechos();
+
   HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) throws NoSuchElementException;
 }

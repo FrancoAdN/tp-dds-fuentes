@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "colecciones")
@@ -22,6 +23,7 @@ public class Coleccion {
     }
 
     @Id
+    private String id;
     private String nombre;
     private String descripcion;
     private LocalDateTime fechaModificacion;
@@ -48,6 +50,18 @@ public class Coleccion {
 
     public void setFechaModificacion(LocalDateTime fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public static String generarId() {
+        return UUID.randomUUID().toString();
     }
 
 }
