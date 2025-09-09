@@ -16,6 +16,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import retrofit2.Response;
+
+import java.io.IOException;
 
 @Service
 public class Fachada implements IFachadaFuente {
@@ -25,7 +28,8 @@ public class Fachada implements IFachadaFuente {
 	@Autowired
 	private IHechoRepository hechoRepository;
 
-	private FachadaProcesadorPdI procesadorPdI;
+	@Autowired
+	private ProcesadorPdIClient procesadorPdIClient;
 
 	public Fachada() {
 		// Default constructor for Spring
@@ -129,14 +133,21 @@ public class Fachada implements IFachadaFuente {
 
 	@Override
 	public void setProcesadorPdI(FachadaProcesadorPdI procesador) {
-		this.procesadorPdI = procesador;
+		// No-op: mantenido para compatibilidad con la interfaz
 	}
 
 	@Override
 	public PdIDTO agregar(PdIDTO pdIDTO) {
 		this.buscarHechoXId(pdIDTO.hechoId());
-		PdIDTO resultado = this.procesadorPdI.procesar(pdIDTO);
-		return resultado;
+		try {
+			Response<PdIDTO> response = this.procesadorPdIClient.procesar(pdIDTO).execute();
+			if (!response.isSuccessful() || response.body() == null) {
+				throw new IllegalStateException("Error al procesar PdI: " + response.code());
+			}
+			return response.body();
+		} catch (IOException e) {
+			throw new IllegalStateException("Fallo la llamada al ProcesadorPdI", e);
+		}
 	}
 
 @Override
