@@ -79,7 +79,8 @@ public class Fachada implements IFachadaFuente {
 				hecho.getUbicacion(),
 				hecho.getFecha(),
 				hecho.getOrigen(),
-        hecho.getEstado());
+        hecho.getEstado(),
+        hecho.getId());
 	}
 
 	@Override
@@ -100,7 +101,8 @@ public class Fachada implements IFachadaFuente {
 				hecho.getUbicacion(),
 				hecho.getFecha(),
 				hecho.getOrigen(),
-                hecho.getEstado());
+                hecho.getEstado(),
+                hecho.getId());
 	}
 
 	@Override
@@ -120,7 +122,8 @@ public class Fachada implements IFachadaFuente {
 										hecho.getUbicacion(),
 										hecho.getFecha(),
 										hecho.getOrigen(),
-										hecho.getEstado()))
+										hecho.getEstado(),
+										hecho.getId()))
 				.toList();
 	}
 
@@ -163,7 +166,8 @@ public HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) {
 			hecho.getUbicacion(),
 			hecho.getFecha(),
 			hecho.getOrigen(),
-			hecho.getEstado());
+			hecho.getEstado(),
+			hecho.getId());
 }
     
 

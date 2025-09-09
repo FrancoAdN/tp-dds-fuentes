@@ -13,9 +13,10 @@ public record HechoDTO(
     String ubicacion,
     LocalDateTime fecha,
     String origen,
-    EstadoHechoEnum estado) {
+    EstadoHechoEnum estado,
+    String id) {
 
   public HechoDTO(String nombreColeccion, String titulo) {
-    this(nombreColeccion, titulo, null, null, null, null, null, EstadoHechoEnum.PENDIENTE);
+    this(nombreColeccion, titulo, null, null, null, null, null, EstadoHechoEnum.PENDIENTE, null);
   }
 }
