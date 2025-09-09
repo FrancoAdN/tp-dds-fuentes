@@ -7,6 +7,7 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
 COPY --from=build /target/my-app-name-1.0-SNAPSHOT.jar app.jar
+COPY --from=build /dd-java-agent.jar dd-java-agent.jar
 
 
 ENV DD_SITE=datadoghq.com \
@@ -14,4 +15,4 @@ ENV DD_SITE=datadoghq.com \
     DD_AGENT_HOST=datadog-agent \
     DD_TRACE_AGENT_PORT=8126
 EXPOSE 8080
-ENTRYPOINT ["java","-javaagent:../dd-java-agent.jar","-Ddd.trace.sample.rate=1","-Ddd.service=dds-fuentes","-Ddd.env=prod","-Ddd.site=datadoghq.com","-jar","app.jar"]
+ENTRYPOINT ["java","-javaagent:/dd-java-agent.jar","-Ddd.trace.sample.rate=1","-Ddd.service=dds-fuentes","-Ddd.env=prod","-Ddd.site=datadoghq.com","-jar","app.jar"]
