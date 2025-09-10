@@ -30,7 +30,7 @@ public class ColeccionController {
     //GET /coleccion/{nombre}
     @GetMapping("/{nombre}")
     public ResponseEntity<ColeccionDTO> obtenerColeccion(@PathVariable String nombre) {
-        return ResponseEntity.ok(fachadaFuente.buscarColeccionXId(nombre));
+        return ResponseEntity.ok(fachadaFuente.buscarColeccionXNombre(nombre));
     }
 
     //POST /coleccion
@@ -42,7 +42,7 @@ public class ColeccionController {
     // GET /coleccion/{nombre}/hechos
     @GetMapping("/{nombre}/hechos")
     public ResponseEntity<List<HechoDTO>> obtenerHechosPorColeccion(@PathVariable String nombre) {
-        List<HechoDTO> hechos = fachadaFuente.buscarHechosXColeccion(nombre);
+        List<HechoDTO> hechos = fachadaFuente.buscarHechosXColeccionPorNombre(nombre);
         return ResponseEntity.ok(hechos);
     }
 

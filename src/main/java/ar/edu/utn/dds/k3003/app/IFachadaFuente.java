@@ -14,10 +14,14 @@ public interface IFachadaFuente {
 
   ColeccionDTO buscarColeccionXId(String coleccionId) throws NoSuchElementException;
 
+  ColeccionDTO buscarColeccionXNombre(String nombre) throws NoSuchElementException;
+
   HechoDTO agregar(HechoDTO hechoDTO);
   HechoDTO buscarHechoXId(String hechoId) throws NoSuchElementException;
 
   List<HechoDTO> buscarHechosXColeccion(String coleccionId) throws NoSuchElementException;
+
+  List<HechoDTO> buscarHechosXColeccionPorNombre(String nombreColeccion) throws NoSuchElementException;
 
   void setProcesadorPdI(FachadaProcesadorPdI procesador);
 

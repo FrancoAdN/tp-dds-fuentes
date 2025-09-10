@@ -61,6 +61,16 @@ public class Fachada implements IFachadaFuente {
 	}
 
 	@Override
+	public ColeccionDTO buscarColeccionXNombre(String nombre) {
+		Optional<Coleccion> coleccionOptional = this.coleccionRepository.findByNombre(nombre).stream().findFirst();
+		if (coleccionOptional.isEmpty()) {
+			throw new NoSuchElementException(nombre + " no existe");
+		}
+		Coleccion coleccion = coleccionOptional.get();
+		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
+	}
+
+	@Override
 	public HechoDTO agregar(HechoDTO hechoDTO) {
 		ColeccionDTO coleccionDTO = this.buscarColeccionXId(hechoDTO.nombre_coleccion());
     System.out.println("ColeccionDTO: " + coleccionDTO);
@@ -125,6 +135,28 @@ public class Fachada implements IFachadaFuente {
 		return hechos.stream()
 				.map(
 						hecho -> 
+								new HechoDTO(
+										hecho.getNombreColeccion(),
+										hecho.getTitulo(),
+										hecho.getEtiquetas(),
+										hecho.getCategoria(),
+										hecho.getUbicacion(),
+										hecho.getFecha(),
+										hecho.getOrigen(),
+										hecho.getEstado(),
+										hecho.getId()))
+				.toList();
+	}
+
+	@Override
+	public List<HechoDTO> buscarHechosXColeccionPorNombre(String nombreColeccion) {
+		this.buscarColeccionXNombre(nombreColeccion);
+
+		List<Hecho> hechos = this.hechoRepository.findByNombreColeccionAndEstadoNot(nombreColeccion, EstadoHechoEnum.CENSURADO);
+
+		return hechos.stream()
+				.map(
+						hecho ->
 								new HechoDTO(
 										hecho.getNombreColeccion(),
 										hecho.getTitulo(),
