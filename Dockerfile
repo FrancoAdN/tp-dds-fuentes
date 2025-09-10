@@ -13,4 +13,4 @@ ENV DD_SERVICE=my-app-name \
     DD_VERSION=1.0.0 \
     DATADOG_API_KEY=2a2041e18c844801dbaa09f884aa26d2 \
     DD_SITE=datadoghq.com
-ENTRYPOINT ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
