@@ -3,6 +3,13 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
+WORKDIR /app
 COPY --from=build /target/my-app-name-1.0-SNAPSHOT.jar app.jar
+COPY dd-java-agent.jar dd-java-agent.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENV DD_SERVICE=my-app-name \
+    DD_ENV=dev \
+    DD_VERSION=1.0.0 \
+    DATADOG_API_KEY=2a2041e18c844801dbaa09f884aa26d2 \
+    DD_SITE=datadoghq.com
+ENTRYPOINT ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "app.jar"]

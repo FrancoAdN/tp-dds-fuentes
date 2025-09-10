@@ -117,6 +117,12 @@
       <version>2.9.0</version>
     </dependency>
 
+    <!-- Micrometer Datadog Registry for metrics export -->
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-datadog</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
