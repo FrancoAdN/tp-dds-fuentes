@@ -5,7 +5,8 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /target/my-app-name-1.0-SNAPSHOT.jar app.jar
-COPY dd-java-agent.jar dd-java-agent.jar
+# Fetch Datadog Java agent directly (avoids build context issues)
+ADD https://dtdg.co/latest-java-tracer dd-java-agent.jar
 EXPOSE 8080
 ENV DD_SERVICE=my-app-name \
     DD_ENV=dev \
