@@ -45,4 +45,11 @@ public class ColeccionController {
         List<HechoDTO> hechos = fachadaFuente.buscarHechosXColeccion(nombre);
         return ResponseEntity.ok(hechos);
     }
+
+    // DELETE /colecciones/all
+    @DeleteMapping("/all")
+    public ResponseEntity<Void> eliminarTodasLasColecciones() {
+        fachadaFuente.eliminarTodasLasColecciones();
+        return ResponseEntity.noContent().build();
+    }
 } 

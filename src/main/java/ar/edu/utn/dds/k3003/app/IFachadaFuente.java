@@ -27,4 +27,8 @@ public interface IFachadaFuente {
 
 
   HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) throws NoSuchElementException;
+
+  void eliminarTodosLosHechos();
+
+  void eliminarTodasLasColecciones();
 }

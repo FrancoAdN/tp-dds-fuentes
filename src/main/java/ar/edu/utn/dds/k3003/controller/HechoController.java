@@ -46,4 +46,11 @@ public class HechoController {
     return ResponseEntity.ok(actualizado);
   }
 
+  //DELETE /hecho/all
+  @DeleteMapping("/all")
+  public ResponseEntity<Void> eliminarTodosLosHechos() {
+    fachadaFuente.eliminarTodosLosHechos();
+    return ResponseEntity.noContent().build();
+  }
+
 }

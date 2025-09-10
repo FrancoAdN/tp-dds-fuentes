@@ -195,5 +195,15 @@ public HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) {
 			.map(coleccion -> new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId()))
 			.toList();
 	}
+
+	@Override
+	public void eliminarTodosLosHechos() {
+		this.hechoRepository.deleteAll();
+	}
+
+	@Override
+	public void eliminarTodasLasColecciones() {
+		this.coleccionRepository.deleteAll();
+	}
 }
 
