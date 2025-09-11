@@ -91,12 +91,6 @@
       <scope>compile</scope>
     </dependency>
 
-    <dependency>
-      <groupId>com.github.ezequieljsosa</groupId>
-      <artifactId>dds-eval-tp2025</artifactId>
-      <version>0.0.7</version>
-    </dependency>
-
 
     <!-- Spring Boot Test -->
     <dependency>

@@ -2,8 +2,7 @@ package ar.edu.utn.dds.k3003.app;
 
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
 import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
-import ar.edu.utn.dds.k3003.facades.dtos.PdIDTO;
-import ar.edu.utn.dds.k3003.facades.FachadaProcesadorPdI;
+import ar.edu.utn.dds.k3003.dtos.PdIDTO;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,7 +22,6 @@ public interface IFachadaFuente {
 
   List<HechoDTO> buscarHechosXColeccionPorNombre(String nombreColeccion) throws NoSuchElementException;
 
-  void setProcesadorPdI(FachadaProcesadorPdI procesador);
 
   PdIDTO agregar(PdIDTO pdIDTO) throws IllegalStateException;
 

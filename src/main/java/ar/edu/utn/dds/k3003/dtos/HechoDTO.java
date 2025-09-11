@@ -3,7 +3,6 @@ package ar.edu.utn.dds.k3003.dtos;
 import java.time.LocalDate;
 import java.util.List;
 
-import ar.edu.utn.dds.k3003.facades.dtos.CategoriaHechoEnum;
 
 public record HechoDTO(
     String nombre_coleccion,

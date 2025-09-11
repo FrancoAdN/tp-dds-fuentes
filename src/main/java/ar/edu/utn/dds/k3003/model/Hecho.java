@@ -1,7 +1,8 @@
 package ar.edu.utn.dds.k3003.model;
 
+import ar.edu.utn.dds.k3003.dtos.CategoriaHechoEnum;
 import ar.edu.utn.dds.k3003.dtos.EstadoHechoEnum;
-import ar.edu.utn.dds.k3003.facades.dtos.CategoriaHechoEnum;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
