@@ -47,18 +47,18 @@ public class Fachada implements IFachadaFuente {
 		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
 	}
 
-	@Override
-	public ColeccionDTO buscarColeccionXId(String id) {
-		System.out.println("Buscando coleccion con ID: " + id);
-		Optional<Coleccion> coleccionOptional = this.coleccionRepository.findById(id).stream().findFirst();
-		System.out.println("ColeccionOptional: " + coleccionOptional);
-    if (coleccionOptional.isEmpty()) {
-			throw new NoSuchElementException(id + " no existe");
-		}
-		Coleccion coleccion = coleccionOptional.get();
-		System.out.println("Coleccion: " + coleccion);
-		return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
-	}
+	// @Override
+	// public ColeccionDTO buscarColeccionXId(String id) {
+	// 	System.out.println("Buscando coleccion con ID: " + id);
+	// 	Optional<Coleccion> coleccionOptional = this.coleccionRepository.findById(id).stream().findFirst();
+	// 	System.out.println("ColeccionOptional: " + coleccionOptional);
+  //   if (coleccionOptional.isEmpty()) {
+	// 		throw new NoSuchElementException(id + " no existe");
+	// 	}
+	// 	Coleccion coleccion = coleccionOptional.get();
+	// 	System.out.println("Coleccion: " + coleccion);
+	// 	return new ColeccionDTO(coleccion.getNombre(), coleccion.getDescripcion(), coleccion.getId());
+	// }
 
 	@Override
 	public ColeccionDTO buscarColeccionXNombre(String nombre) {
@@ -72,7 +72,7 @@ public class Fachada implements IFachadaFuente {
 
 	@Override
 	public HechoDTO agregar(HechoDTO hechoDTO) {
-		ColeccionDTO coleccionDTO = this.buscarColeccionXId(hechoDTO.nombre_coleccion());
+		ColeccionDTO coleccionDTO = this.buscarColeccionXNombre(hechoDTO.nombre_coleccion());
     System.out.println("ColeccionDTO: " + coleccionDTO);
 		Hecho hecho =
 				new Hecho(
@@ -127,10 +127,10 @@ public class Fachada implements IFachadaFuente {
 	}
 
 	@Override
-	public List<HechoDTO> buscarHechosXColeccion(String coleccionId) {
-		this.buscarColeccionXId(coleccionId);
+	public List<HechoDTO> buscarHechosXColeccion(String nombreColeccion) {
+		this.buscarColeccionXNombre(nombreColeccion);
 
-    List<Hecho> hechos = this.hechoRepository.findByNombreColeccionAndEstadoNot(coleccionId, EstadoHechoEnum.CENSURADO);
+    List<Hecho> hechos = this.hechoRepository.findByNombreColeccionAndEstadoNot(nombreColeccion, EstadoHechoEnum.CENSURADO);
 
 		return hechos.stream()
 				.map(

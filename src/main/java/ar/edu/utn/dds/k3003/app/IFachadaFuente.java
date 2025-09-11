@@ -12,7 +12,7 @@ public interface IFachadaFuente {
 
   ColeccionDTO agregar(ColeccionDTO coleccionDTO);
 
-  ColeccionDTO buscarColeccionXId(String coleccionId) throws NoSuchElementException;
+  // ColeccionDTO buscarColeccionXId(String coleccionId) throws NoSuchElementException;
 
   ColeccionDTO buscarColeccionXNombre(String nombre) throws NoSuchElementException;
 
