@@ -15,7 +15,7 @@ public class RetrofitConfig {
 	public Retrofit retrofit(ObjectMapper objectMapper) {
 		OkHttpClient httpClient = new OkHttpClient.Builder().build();
 		return new Retrofit.Builder()
-			.baseUrl("https://procesador.example.com/")
+			.baseUrl("https://two025-tp-anual-sebabalas.onrender.com/")
 			.client(httpClient)
 			.addConverterFactory(JacksonConverterFactory.create(objectMapper))
 			.build();

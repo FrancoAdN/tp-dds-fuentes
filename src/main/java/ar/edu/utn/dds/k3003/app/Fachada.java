@@ -14,7 +14,10 @@ import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import retrofit2.Response;
 
 import java.io.IOException;
@@ -169,18 +172,22 @@ public class Fachada implements IFachadaFuente {
 				.toList();
 	}
 
-
 	@Override
-	public PdIDTO agregar(PdIDTO pdIDTO) {
+	public PdIDTO agregar(PdIDTO pdIDTO) throws IllegalStateException {
 		this.buscarHechoXId(pdIDTO.hechoId());
+		System.out.println("PdIDTO: " + pdIDTO);
 		try {
 			Response<PdIDTO> response = this.procesadorPdIClient.procesar(pdIDTO).execute();
+      System.out.println("Response: " + response);
 			if (!response.isSuccessful() || response.body() == null) {
+        if (response.code() == 422) {
+          throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Hecho no inactivo");
+        }
 				throw new IllegalStateException("Error al procesar PdI: " + response.code());
 			}
 			return response.body();
 		} catch (IOException e) {
-			throw new IllegalStateException("Fallo la llamada al ProcesadorPdI", e);
+      throw new IllegalStateException("Fallo al comunicarse con el Procesador de PdI", e);
 		}
 	}
 

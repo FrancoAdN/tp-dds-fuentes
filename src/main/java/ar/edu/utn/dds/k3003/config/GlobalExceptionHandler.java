@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.InvalidParameterException;
 import java.util.NoSuchElementException;
@@ -35,5 +36,13 @@ public class GlobalExceptionHandler {
         response.put("error", "Internal Server Error");
         response.put("message", "An unexpected error occurred");
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, String>> handleResponseStatusException(ResponseStatusException e) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", e.getStatusCode().toString());
+        response.put("message", e.getReason());
+        return new ResponseEntity<>(response, e.getStatusCode());
     }
 } 
