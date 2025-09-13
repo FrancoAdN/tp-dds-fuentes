@@ -26,3 +26,6 @@
 
 ### Request Hecho con PDIs anidados
 ![Request Hecho con PDIs anidados](./use-cases/request-hecho-con-pdi.jpeg)
+
+### Solicitud para eliminar un Hecho
+![Solicitud para eliminar un Hecho](./use-cases/solicitud-eliminar-hecho.jpeg)
