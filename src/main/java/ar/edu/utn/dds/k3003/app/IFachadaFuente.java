@@ -25,6 +25,8 @@ public interface IFachadaFuente {
 
   PdIDTO agregar(PdIDTO pdIDTO) throws IllegalStateException;
 
+  List<PdIDTO> pdisDeHecho(String hechoId) throws NoSuchElementException, IllegalStateException;
+
   List<ColeccionDTO> colecciones();
 
 

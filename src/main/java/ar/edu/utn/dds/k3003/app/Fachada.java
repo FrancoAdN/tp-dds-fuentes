@@ -191,6 +191,20 @@ public class Fachada implements IFachadaFuente {
 		}
 	}
 
+	@Override
+	public List<PdIDTO> pdisDeHecho(String hechoId) throws NoSuchElementException, IllegalStateException {
+		this.buscarHechoXId(hechoId);
+		try {
+			Response<java.util.List<PdIDTO>> response = this.procesadorPdIClient.listarPorHecho(hechoId).execute();
+			if (!response.isSuccessful() || response.body() == null) {
+				throw new IllegalStateException("Error al obtener PdIs: " + (response != null ? response.code() : "sin respuesta"));
+			}
+			return response.body();
+		} catch (IOException e) {
+			throw new IllegalStateException("Fallo al comunicarse con el Procesador de PdI", e);
+		}
+	}
+
 @Override
 public HechoDTO actualizar(String hechoId, HechoDTO hechoDTO) {
 	Optional<Hecho> hechoOptional = this.hechoRepository.findById(hechoId);

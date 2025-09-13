@@ -2,6 +2,9 @@ package ar.edu.utn.dds.k3003.controller;
 
 import ar.edu.utn.dds.k3003.app.IFachadaFuente;
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
+import ar.edu.utn.dds.k3003.dtos.PdIDTO;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +54,13 @@ public class HechoController {
   public ResponseEntity<Void> eliminarTodosLosHechos() {
     fachadaFuente.eliminarTodosLosHechos();
     return ResponseEntity.noContent().build();
+  }
+
+  //GET /hecho/{id}/pdis
+  @GetMapping("/{id}/pdis")
+  public ResponseEntity<List<PdIDTO>> listarPdisDeHecho(@PathVariable String id) {
+    List<PdIDTO> pdis = fachadaFuente.pdisDeHecho(id);
+    return ResponseEntity.ok(pdis);
   }
 
 }
