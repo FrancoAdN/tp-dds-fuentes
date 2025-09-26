@@ -117,6 +117,12 @@
       <artifactId>micrometer-registry-datadog</artifactId>
     </dependency>
 
+    <!-- Spring AMQP (RabbitMQ) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
