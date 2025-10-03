@@ -7,6 +7,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import java.util.NoSuchElementException;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ public class HechoAmqpListener {
 
     private final IFachadaFuente fachadaFuente;
     private final MeterRegistry meterRegistry;
+    @Value("${amqp.create-enabled:true}")
+    private boolean createEnabled;
 
     public HechoAmqpListener(IFachadaFuente fachadaFuente, MeterRegistry meterRegistry) {
         this.fachadaFuente = fachadaFuente;
@@ -26,6 +29,11 @@ public class HechoAmqpListener {
     @RabbitListener(queues = "${amqp.queue:hechos.queue}", containerFactory = "hechosListenerFactory")
     public void onHechoMessage(HechoDTO hechoDTO) {
         System.out.println("Recibiendo hecho: " + hechoDTO);
+        if (!createEnabled) {
+          System.out.println("Creación de hechos por AMQP deshabilitada (amqp.create-enabled=false)");
+          meterRegistry.counter("hechos_queue_created", "status", "skipped").increment();
+          return;
+        }
         // Procesa y registra métricas de éxito/fracaso
         try {
             fachadaFuente.buscarColeccionXNombre(hechoDTO.nombre_coleccion());
