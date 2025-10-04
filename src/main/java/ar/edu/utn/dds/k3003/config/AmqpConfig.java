@@ -76,11 +76,12 @@ public class AmqpConfig {
 
     @Bean(name = "hechosListenerFactory")
     public SimpleRabbitListenerContainerFactory hechosListenerFactory(
-            ConnectionFactory connectionFactory
+            ConnectionFactory connectionFactory,
+            Jackson2JsonMessageConverter converter
     ) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
-        // No establecer Jackson converter aquí; usaremos el payload crudo/String y parsearemos manualmente
+        factory.setMessageConverter(converter);
         factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
         factory.setDefaultRequeueRejected(false); // no requeue on exceptions
         factory.setPrefetchCount(1);
