@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
-@ConditionalOnProperty(prefix = "amqp", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "amqp", name = {"enabled", "create-enabled"}, havingValue = "true")
 public class AmqpConfig {
 
     @Value("${amqp.uri:}")

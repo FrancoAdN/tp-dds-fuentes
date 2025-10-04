@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(prefix = "amqp", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "amqp", name = {"enabled", "create-enabled"}, havingValue = "true")
 public class HechoAmqpListener {
 
     private final IFachadaFuente fachadaFuente;
