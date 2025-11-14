@@ -2,6 +2,7 @@ package ar.edu.utn.dds.k3003.app;
 
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
 import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
+import ar.edu.utn.dds.k3003.dtos.HechoConPdisDTO;
 import ar.edu.utn.dds.k3003.dtos.PdIDTO;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,6 +22,8 @@ public interface IFachadaFuente {
   List<HechoDTO> buscarHechosXColeccion(String coleccionId) throws NoSuchElementException;
 
   List<HechoDTO> buscarHechosXColeccionPorNombre(String nombreColeccion) throws NoSuchElementException;
+
+  List<HechoConPdisDTO> buscarHechosConPdisXColeccionPorNombre(String nombreColeccion) throws NoSuchElementException, IllegalStateException;
 
 
   PdIDTO agregar(PdIDTO pdIDTO) throws IllegalStateException;

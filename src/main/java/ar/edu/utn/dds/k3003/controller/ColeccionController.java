@@ -2,7 +2,7 @@ package ar.edu.utn.dds.k3003.controller;
 
 import ar.edu.utn.dds.k3003.app.IFachadaFuente;
 import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
-import ar.edu.utn.dds.k3003.dtos.HechoDTO;
+import ar.edu.utn.dds.k3003.dtos.HechoConPdisDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +41,9 @@ public class ColeccionController {
 
     // GET /coleccion/{nombre}/hechos
     @GetMapping("/{nombre}/hechos")
-    public ResponseEntity<List<HechoDTO>> obtenerHechosPorColeccion(@PathVariable String nombre) {
-        List<HechoDTO> hechos = fachadaFuente.buscarHechosXColeccionPorNombre(nombre);
-        return ResponseEntity.ok(hechos);
+    public ResponseEntity<List<HechoConPdisDTO>> obtenerHechosPorColeccion(@PathVariable String nombre) {
+        List<HechoConPdisDTO> hechosConPdis = fachadaFuente.buscarHechosConPdisXColeccionPorNombre(nombre);
+        return ResponseEntity.ok(hechosConPdis);
     }
 
     // DELETE /colecciones/all

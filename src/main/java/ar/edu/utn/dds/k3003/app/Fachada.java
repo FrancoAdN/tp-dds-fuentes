@@ -2,6 +2,7 @@ package ar.edu.utn.dds.k3003.app;
 
 import ar.edu.utn.dds.k3003.dtos.ColeccionDTO;
 import ar.edu.utn.dds.k3003.dtos.PdIDTO;
+import ar.edu.utn.dds.k3003.dtos.HechoConPdisDTO;
 import ar.edu.utn.dds.k3003.model.Coleccion;
 import ar.edu.utn.dds.k3003.dtos.EstadoHechoEnum;
 import ar.edu.utn.dds.k3003.dtos.HechoDTO;
@@ -169,6 +170,33 @@ public class Fachada implements IFachadaFuente {
 										hecho.getOrigen(),
 										hecho.getEstado(),
 										hecho.getId()))
+				.toList();
+	}
+
+	@Override
+	public List<HechoConPdisDTO> buscarHechosConPdisXColeccionPorNombre(String nombreColeccion) {
+		this.buscarColeccionXNombre(nombreColeccion);
+
+		List<Hecho> hechos = this.hechoRepository.findByNombreColeccionAndEstadoNot(nombreColeccion, EstadoHechoEnum.CENSURADO);
+
+		return hechos.stream()
+				.map(hecho -> {
+					HechoDTO hechoDTO =
+							new HechoDTO(
+									hecho.getNombreColeccion(),
+									hecho.getTitulo(),
+									hecho.getEtiquetas(),
+									hecho.getCategoria(),
+									hecho.getUbicacion(),
+									hecho.getFecha(),
+									hecho.getOrigen(),
+									hecho.getEstado(),
+									hecho.getId());
+
+					List<PdIDTO> pdis = this.pdisDeHecho(hecho.getId());
+
+					return new HechoConPdisDTO(hechoDTO, pdis);
+				})
 				.toList();
 	}
 
